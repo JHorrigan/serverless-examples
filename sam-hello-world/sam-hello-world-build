@@ -1,0 +1,121 @@
+james@james-pc:~/serverless/serverless-examples/sam-hello-world/sam-app$ sam deploy --guided
+
+Configuring SAM deploy
+======================
+
+	Looking for config file [samconfig.toml] :  Not found
+
+	Setting default arguments for 'sam deploy'
+	=========================================
+	Stack Name [sam-app]: 
+	AWS Region [us-east-1]: eu-west-1
+	#Shows you resources changes to be deployed and require a 'Y' to initiate deploy
+	Confirm changes before deploy [y/N]: 
+	#SAM needs permission to be able to create roles to connect to the resources in your template
+	Allow SAM CLI IAM role creation [Y/n]: 
+	HelloWorldFunction may not have authorization defined, Is this okay? [y/N]: y
+	Save arguments to configuration file [Y/n]: 
+	SAM configuration file [samconfig.toml]: 
+	SAM configuration environment [default]: 
+
+	Looking for resources needed for deployment: Not found.
+	Creating the required resources...
+	Successfully created!
+
+		Managed S3 bucket: aws-sam-cli-managed-default-samclisourcebucket-rb9uzpq0kk5a
+		A different default S3 bucket can be set in samconfig.toml
+
+	Saved arguments to config file
+	Running 'sam deploy' for future deployments will use the parameters saved above.
+	The above parameters can be changed by modifying samconfig.toml
+	Learn more about samconfig.toml syntax at 
+	https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-config.html
+
+Uploading to sam-app/7e23deb2b18497df06aec41e21909939  584056 / 584056  (100.00%)
+
+	Deploying with following values
+	===============================
+	Stack name                   : sam-app
+	Region                       : eu-west-1
+	Confirm changeset            : False
+	Deployment s3 bucket         : aws-sam-cli-managed-default-samclisourcebucket-rb9uzpq0kk5a
+	Capabilities                 : ["CAPABILITY_IAM"]
+	Parameter overrides          : {}
+	Signing Profiles             : {}
+
+Initiating deployment
+=====================
+HelloWorldFunction may not have authorization defined.
+Uploading to sam-app/311e55f176444bb0ccfa099c67280fc1.template  1089 / 1089  (100.00%)
+
+Waiting for changeset to be created..
+
+CloudFormation stack changeset
+---------------------------------------------------------------------------------------------------------------------------------------------
+Operation                           LogicalResourceId                   ResourceType                        Replacement                       
+---------------------------------------------------------------------------------------------------------------------------------------------
++ Add                               HelloWorldFunctionHelloWorldPermi   AWS::Lambda::Permission             N/A                               
+                                    ssionProd                                                                                                 
++ Add                               HelloWorldFunctionRole              AWS::IAM::Role                      N/A                               
++ Add                               HelloWorldFunction                  AWS::Lambda::Function               N/A                               
++ Add                               ServerlessRestApiDeployment47fc2d   AWS::ApiGateway::Deployment         N/A                               
+                                    5f9d                                                                                                      
++ Add                               ServerlessRestApiProdStage          AWS::ApiGateway::Stage              N/A                               
++ Add                               ServerlessRestApi                   AWS::ApiGateway::RestApi            N/A                               
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Changeset created successfully. arn:aws:cloudformation:eu-west-1:472040773164:changeSet/samcli-deploy1614010144/a8eab6aa-7e4b-4feb-997b-1a909c2d2377
+
+
+2021-02-22 16:09:11 - Waiting for stack create/update to complete
+
+CloudFormation events from changeset
+---------------------------------------------------------------------------------------------------------------------------------------------
+ResourceStatus                      ResourceType                        LogicalResourceId                   ResourceStatusReason              
+---------------------------------------------------------------------------------------------------------------------------------------------
+CREATE_IN_PROGRESS                  AWS::IAM::Role                      HelloWorldFunctionRole              Resource creation Initiated       
+CREATE_IN_PROGRESS                  AWS::IAM::Role                      HelloWorldFunctionRole              -                                 
+CREATE_COMPLETE                     AWS::IAM::Role                      HelloWorldFunctionRole              -                                 
+CREATE_IN_PROGRESS                  AWS::Lambda::Function               HelloWorldFunction                  -                                 
+CREATE_IN_PROGRESS                  AWS::Lambda::Function               HelloWorldFunction                  Resource creation Initiated       
+CREATE_COMPLETE                     AWS::Lambda::Function               HelloWorldFunction                  -                                 
+CREATE_IN_PROGRESS                  AWS::ApiGateway::RestApi            ServerlessRestApi                   -                                 
+CREATE_COMPLETE                     AWS::ApiGateway::RestApi            ServerlessRestApi                   -                                 
+CREATE_IN_PROGRESS                  AWS::ApiGateway::RestApi            ServerlessRestApi                   Resource creation Initiated       
+CREATE_IN_PROGRESS                  AWS::Lambda::Permission             HelloWorldFunctionHelloWorldPermi   Resource creation Initiated       
+                                                                        ssionProd                                                             
+CREATE_IN_PROGRESS                  AWS::Lambda::Permission             HelloWorldFunctionHelloWorldPermi   -                                 
+                                                                        ssionProd                                                             
+CREATE_IN_PROGRESS                  AWS::ApiGateway::Deployment         ServerlessRestApiDeployment47fc2d   -                                 
+                                                                        5f9d                                                                  
+CREATE_COMPLETE                     AWS::ApiGateway::Deployment         ServerlessRestApiDeployment47fc2d   -                                 
+                                                                        5f9d                                                                  
+CREATE_IN_PROGRESS                  AWS::ApiGateway::Deployment         ServerlessRestApiDeployment47fc2d   Resource creation Initiated       
+                                                                        5f9d                                                                  
+CREATE_IN_PROGRESS                  AWS::ApiGateway::Stage              ServerlessRestApiProdStage          -                                 
+CREATE_IN_PROGRESS                  AWS::ApiGateway::Stage              ServerlessRestApiProdStage          Resource creation Initiated       
+CREATE_COMPLETE                     AWS::ApiGateway::Stage              ServerlessRestApiProdStage          -                                 
+CREATE_COMPLETE                     AWS::Lambda::Permission             HelloWorldFunctionHelloWorldPermi   -                                 
+                                                                        ssionProd                                                             
+CREATE_COMPLETE                     AWS::CloudFormation::Stack          sam-app                             -                                 
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+CloudFormation outputs from deployed stack
+---------------------------------------------------------------------------------------------------------------------------------------------
+Outputs                                                                                                                                     
+---------------------------------------------------------------------------------------------------------------------------------------------
+Key                 HelloWorldFunctionIamRole                                                                                               
+Description         Implicit IAM Role created for Hello World function                                                                      
+Value               arn:aws:iam::472040773164:role/sam-app-HelloWorldFunctionRole-G69D1AIKN36P                                              
+
+Key                 HelloWorldApi                                                                                                           
+Description         API Gateway endpoint URL for Prod stage for Hello World function                                                        
+Value               https://2g2vvydaek.execute-api.eu-west-1.amazonaws.com/Prod/hello/                                                      
+
+Key                 HelloWorldFunction                                                                                                      
+Description         Hello World Lambda Function ARN                                                                                         
+Value               arn:aws:lambda:eu-west-1:472040773164:function:sam-app-HelloWorldFunction-1U8PNMD6VUSUE                                 
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Successfully created/updated stack - sam-app in eu-west-1
+
